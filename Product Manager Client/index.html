@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Product Management</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+
+  <script type="text/x-handlebars">
+
+  <div class="page-header">
+    <h1>Product Management</h1>
+    <small>Keep up with your stuff!</small>
+  </div>
+
+    <ul class="nav nav-tabs">
+
+      <li role="presentation" class="active">{{#link-to 'index'}}Dashboard{{/link-to}}</li>
+
+    </ul>
+
+    {{outlet}}
+  </script>
+
+
+
+  <script type="text/x-handlebars" id="index">
+    <h1>Products</h1>
+    <hr />
+    {{#each product in model}}
+    <ul>
+      <li><b>{{#link-to 'product' product}}{{product.name}}{{/link-to}}</b></li>
+      <p><b>{{#link-to 'editProduct' product}}Edit{{/link-to}}</b></p>
+      <a href="#" {{action 'deleteProduct' product}}>Delete</a>
+    </ul>
+
+    {{/each}}
+
+    <hr />
+
+    <p><b>{{#link-to 'addProduct'}}Add Product{{/link-to}}</b></p>
+
+  </script>
+
+
+  <script type="text/x-handlebars" id="product">
+    <hr />
+    <p class="lead">Title: {{name}}</p>
+    <p class="lead">Description: {{description}}</p>
+    <p class="lead">Price: ${{price}}</p>
+
+
+    <p><b>{{#link-to 'index'}}Products{{/link-to}}</b></p>
+
+  </script>
+
+
+  <script type="text/x-handlebars" id="addProduct">
+    <hr />
+    <form {{action saveProduct on="submit"}}>
+      <p>Title: {{input value=name}}</p>
+      <p>Description: {{input value=description}}</p>
+      <p>Price: {{input value=price}}</p>
+      <p><input type="submit" value="Add product" /></p>
+    </form>
+    <p><b>{{#link-to 'index'}}Products{{/link-to}}</b></p>
+  </script>
+
+  <script type="text/x-handlebars" id="editProduct">
+    <hr />
+    <form {{action saveProduct on="submit"}}>
+      <p>Title: {{input value=name}}</p>
+      <p>Description: {{input value=description}}</p>
+      <p>Price: {{input value=price}}</p>
+      <p><input type="submit" value="Update product" /></p>
+    </form>
+    <p><b>{{#link-to 'index'}}Products{{/link-to}}</b></p>
+  </script>
+
+  <script type="text/x-handlebars" id="ProductConfirmation">
+
+    <hr />
+
+      <p class="lead">Your product has been successfully saved!</p>
+
+    <hr />
+
+    <p><b>{{#link-to 'index'}}Products{{/link-to}}</b></p>
+    <p><b>{{#link-to 'addProduct'}}Add Product{{/link-to}}</b></p>
+
+  </script>
+
+  <script type="text/x-handlebars" id="EditProductConfirmation">
+
+    <hr />
+
+    <p class="lead">Your product has been successfully updated!</p>
+
+    <hr />
+
+    <p><b>{{#link-to 'index'}}Products{{/link-to}}</b></p>
+    <p><b>{{#link-to 'addProduct'}}Add Product{{/link-to}}</b></p>
+
+  </script>
+
+
+
+  <script src="js/libs/jquery-1.10.2.js"></script>
+  <script src="js/libs/handlebars-v2.0.0.js"></script>
+  <script src="js/libs/ember-1.9.1.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ember-data.js/1.0.0-beta.14.1/ember-data.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ember-localstorage-adapter/0.3.1/localstorage_adapter.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
